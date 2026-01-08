@@ -4,7 +4,7 @@ const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 const API_KEY = process.env.TMDB_API_KEY;
 
-const tmdb = api.create({
+const tmdb = axios.create({
   baseURL: TMDB_BASE_URL,
   timeout: 12000, // 🚨 CRITICAL
   params: {
