@@ -58,7 +58,7 @@ const AddMovie = () => {
     };
 
     try {
-      await api.post('/api/movies', movieData);
+      await api.post('/movies', movieData);
       alert('Movie added successfully!');
       navigate('/admin');
     } catch (error) {

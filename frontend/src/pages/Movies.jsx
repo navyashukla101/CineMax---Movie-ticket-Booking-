@@ -12,7 +12,7 @@ const Movies = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await api.get('/api/movies');
+      const response = await api.get('/movies');
       setMovies(response.data);
     } catch (error) {
       console.error('Error fetching movies:', error);

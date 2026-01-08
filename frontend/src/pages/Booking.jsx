@@ -16,7 +16,7 @@ const Booking = () => {
 
   const fetchMovie = async () => {
     try {
-      const response = await api.get(`/api/movies/${id}`);
+      const response = await api.get(`/movies/${id}`);
       setMovie(response.data);
     } catch (error) {
       console.error('Error fetching movie:', error);

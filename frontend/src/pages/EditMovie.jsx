@@ -34,7 +34,7 @@ const EditMovie = () => {
 
   const fetchMovie = async () => {
     try {
-      const response = await api.get(`/api/movies/${id}`);
+      const response = await api.get(`/movies/${id}`);
       const movie = response.data;
       setFormData({
         title: movie.title,

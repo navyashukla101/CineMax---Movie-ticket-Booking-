@@ -22,7 +22,7 @@ const AdminPanel = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await api.get('/api/movies');
+      const response = await api.get('/movies');
       setMovies(response.data);
     } catch (error) {
       console.error('Error fetching movies:', error);
@@ -34,7 +34,7 @@ const AdminPanel = () => {
   const handleDelete = async (id, title) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
-        await api.delete(`/api/movies/${id}`);
+        await api.delete(`/movies/${id}`);
         alert('Movie deleted successfully!');
         fetchMovies();
       } catch (error) {
