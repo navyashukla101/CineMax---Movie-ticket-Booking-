@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { Calendar, MapPin, Ticket } from 'lucide-react';
 
@@ -16,7 +16,7 @@ const MyBookings = () => {
 
   const fetchBookings = async () => {
     try {
-      const response = await axios.get(`/api/bookings/user/${user.id}`);
+      const response = await api.get(`/api/bookings/user/${user.id}`);
       setBookings(response.data);
     } catch (error) {
       console.error('Error fetching bookings:', error);

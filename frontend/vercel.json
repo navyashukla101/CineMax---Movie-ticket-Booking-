@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "https://cinemax-movie-ticket-booking.onrender.com"
+      "source": "/api/:path*",
+      "destination": "https://cinemax-movie-ticket-booking.onrender.com/api/:path*"
     }
   ]
 }

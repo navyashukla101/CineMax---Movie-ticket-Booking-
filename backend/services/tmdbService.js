@@ -1,10 +1,11 @@
 const axios = require("axios");
+const { default: api } = require("../../frontend/src/api/axios");
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 const API_KEY = process.env.TMDB_API_KEY;
 
-const tmdb = axios.create({
+const tmdb = api.create({
   baseURL: TMDB_BASE_URL,
   timeout: 12000, // 🚨 CRITICAL
   params: {

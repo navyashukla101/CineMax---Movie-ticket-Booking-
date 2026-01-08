@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import MovieDetails from '../components/MovieDetails';
 import SeatSelection from '../components/SeatSelection';
 
@@ -16,7 +16,7 @@ const Booking = () => {
 
   const fetchMovie = async () => {
     try {
-      const response = await axios.get(`/api/movies/${id}`);
+      const response = await api.get(`/api/movies/${id}`);
       setMovie(response.data);
     } catch (error) {
       console.error('Error fetching movie:', error);

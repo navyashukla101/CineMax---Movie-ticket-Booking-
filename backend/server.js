@@ -1,16 +1,25 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(
-  cors({
-    origin: "*", // later you can restrict to Vercel URL
-  })
-);
+// CORS Configuration
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://cine-max-movie-ticket-booking.vercel.app",
+    "https://your-custom-domain.com", // Add your custom domain if any
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,6 +27,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/movies", require("./routes/movies"));
 app.use("/api/bookings", require("./routes/bookings"));
 app.use("/api/auth", require("./routes/auth"));
+
+// Test route
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", message: "Server is running" });
+});
 
 // MongoDB connection (ONLY ONCE)
 mongoose

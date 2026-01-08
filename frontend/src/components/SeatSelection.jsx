@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import axios from 'axios';
+import api from '../api/axios';
 
 const SeatSelection = ({ movie, showtime }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -33,7 +33,7 @@ const SeatSelection = ({ movie, showtime }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post('/api/bookings', {
+      const response = await api.post('/api/bookings', {
         user: user.id,
         movie: movie._id,
         showtime: showtime.time,

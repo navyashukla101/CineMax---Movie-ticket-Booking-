@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Search } from 'lucide-react';
-import axios from 'axios';
+import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import AdminMovieCard from '../components/AdminMovieCard'; // ADD THIS IMPORT
 
@@ -22,7 +22,7 @@ const AdminPanel = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await axios.get('/api/movies');
+      const response = await api.get('/api/movies');
       setMovies(response.data);
     } catch (error) {
       console.error('Error fetching movies:', error);
@@ -34,7 +34,7 @@ const AdminPanel = () => {
   const handleDelete = async (id, title) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
-        await axios.delete(`/api/movies/${id}`);
+        await api.delete(`/api/movies/${id}`);
         alert('Movie deleted successfully!');
         fetchMovies();
       } catch (error) {

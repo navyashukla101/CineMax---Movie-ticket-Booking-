@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { useAuth } from '../context/AuthContext';
 
 const EditMovie = () => {
@@ -33,7 +33,7 @@ const EditMovie = () => {
 
   const fetchMovie = async () => {
     try {
-      const response = await axios.get(`/api/movies/${id}`);
+      const response = await api.get(`/api/movies/${id}`);
       const movie = response.data;
       setFormData({
         title: movie.title,
@@ -76,13 +76,12 @@ const EditMovie = () => {
     };
 
     try {
-      await axios.put(`/api/movies/${id}`, movieData);
-      alert('Movie updated successfully!');
-      navigate('/admin');
-    } catch (error) {
-      alert('Error updating movie: ' + error.response?.data?.message);
-    }
-  };
+  await api.put(`/movies/${id}`, movieData); // no /api prefix needed here
+  alert('Movie updated successfully!');
+  navigate('/admin');
+} catch (error) {
+  alert('Error updating movie: ' + error.response?.data?.message);
+}
 
   if (loading) return <p>Loading...</p>;
 
@@ -228,6 +227,6 @@ const EditMovie = () => {
       </div>
     </div>
   );
-};
+};}
 
 export default EditMovie;

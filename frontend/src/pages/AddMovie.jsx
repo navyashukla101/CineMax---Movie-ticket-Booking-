@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 
 const AddMovie = () => {
@@ -58,7 +58,7 @@ const AddMovie = () => {
     };
 
     try {
-      await axios.post('/api/movies', movieData);
+      await api.post('/api/movies', movieData);
       alert('Movie added successfully!');
       navigate('/admin');
     } catch (error) {

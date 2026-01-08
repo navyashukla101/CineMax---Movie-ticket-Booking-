@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import MovieCard from '../components/MovieCard';
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await axios.get('/api/movies');
+      const response = await api.get('/api/movies');
       setMovies(response.data);
     } catch (error) {
       console.error('Error fetching movies:', error);

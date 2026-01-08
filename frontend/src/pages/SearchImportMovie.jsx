@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Plus, Film } from 'lucide-react';
-import axios from 'axios';
+import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 
 const SearchImportMovie = () => {
@@ -25,7 +25,7 @@ const SearchImportMovie = () => {
 
     setLoading(true);
     try {
-      const response = await axios.get(`/api/movies/tmdb/search?query=${searchQuery}`);
+      const response = await api.get(`/api/movies/tmdb/search?query=${searchQuery}`);
       setSearchResults(response.data);
     } catch (error) {
       alert('Error searching movies: ' + error.message);
@@ -37,7 +37,7 @@ const SearchImportMovie = () => {
   const handleImport = async (tmdbId) => {
     setImporting(tmdbId);
     try {
-      await axios.post(`/api/movies/tmdb/import/${tmdbId}`);
+      await api.post(`/api/movies/tmdb/import/${tmdbId}`);
       alert('Movie imported successfully!');
       navigate('/admin');
     } catch (error) {
@@ -49,7 +49,7 @@ const SearchImportMovie = () => {
 
   const handleViewDetails = async (tmdbId) => {
     try {
-      const response = await axios.get(`/api/movies/tmdb/details/${tmdbId}`);
+      const response = await api.get(`/api/movies/tmdb/details/${tmdbId}`);
       console.log('Movie Details:', response.data);
       alert(`Movie: ${response.data.title}\nRating: ${response.data.rating}\nDirector: ${response.data.director}`);
     } catch (error) {
