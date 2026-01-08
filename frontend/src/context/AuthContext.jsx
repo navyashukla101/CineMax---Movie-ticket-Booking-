@@ -58,8 +58,13 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  // Check if user is admin (simple check - email ends with @admin.com)
+  const isAdmin = () => {
+  return user?.email?.endsWith('@admin.com');
+};
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Film, User } from 'lucide-react';
+import { Film, User, Shield } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -24,6 +24,12 @@ const Navbar = () => {
           <Link to="/">Home</Link>
           <Link to="/movies">Movies</Link>
           {user && <Link to="/my-bookings">My Bookings</Link>}
+          {isAdmin() && (
+            <Link to="/admin" className="admin-link">
+              <Shield size={18} />
+              Admin Panel
+            </Link>
+          )}
         </div>
 
         <div className="nav-auth">
@@ -32,6 +38,7 @@ const Navbar = () => {
               <div className="user-info">
                 <User size={20} />
                 <span>{user.name}</span>
+                {isAdmin() && <span className="admin-badge">Admin</span>}
               </div>
               <button onClick={handleLogout} className="logout-btn">Logout</button>
             </div>
