@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://cinemax-movie-ticket-booking.onrender.com"
+    }
+  ]
+}
