@@ -33,7 +33,7 @@ const SeatSelection = ({ movie, showtime }) => {
 
     setLoading(true);
     try {
-      const response = await api.post('/api/bookings', {
+      const response = await api.post('/bookings', {
         user: user.id,
         movie: movie._id,
         showtime: showtime.time,
